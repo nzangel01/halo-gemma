@@ -276,7 +276,8 @@ export function initializeExtendedServices(): void {
   registerIdleTask('initialize-search-engines', async () => {
     try {
       await initializeEngines({
-        tavilyApiKey: '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',
+        // Read from env; Tavily stays disabled when unset (no hardcoded key).
+        tavilyApiKey: process.env.TAVILY_API_KEY || undefined,
       })
     } catch (err) {
       console.warn(
